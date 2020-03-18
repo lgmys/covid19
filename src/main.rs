@@ -8,7 +8,7 @@ use clap::{App, Arg};
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let matches = App::new("covid-19")
         .version("0.1")
-        .author("Lukasz Gmys <lgmys@pm.e>")
+        .author("Lukasz Gmys <lgmys@pm.me>")
         .about("Fetches Covid-19 cases count")
         .arg(
             Arg::with_name("simple")
