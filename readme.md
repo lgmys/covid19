@@ -1,4 +1,4 @@
-Cli app to fetch current COVID19 cases for `$COVID19_COUNTRY` (defaults to "poland").
+Cli app to fetch current COVID19 cases for your location based on `$COVID19_COUNTRY` env variable (defaults to "poland").
 
 Requires rust to be available in your `$PATH`.
 
