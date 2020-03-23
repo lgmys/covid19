@@ -22,16 +22,23 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let country = var("COVID19_COUNTRY").unwrap_or(String::from("poland"));
 
-    let resp = cases_service::query_cases(country).await?;
+    let cases_query_result = cases_service::query_cases(country).await;
 
-    if matches.is_present("simple") {
-        println!("{}({})", resp.cases, resp.todayCases);
-        return Ok(())
+    match cases_query_result {
+        Ok(resp) => {
+            if matches.is_present("simple") {
+                println!("{}({})", resp.cases, resp.todayCases);
+                return Ok(())
+            }
+        
+            println!(
+                "covid-19 cases in {}: {} ({} today)",
+                resp.country, resp.cases, resp.todayCases
+            );
+        },
+        Err(error) => panic!("could not fetch case count: {:?}", error),
     }
 
-    println!(
-        "covid-19 cases in {}: {} ({} today)",
-        resp.country, resp.cases, resp.todayCases
-    );
+
     Ok(())
 }
