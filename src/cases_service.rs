@@ -5,6 +5,7 @@ pub struct CovidApiResponseForCountry {
     pub country: String,
     pub cases: i32,
     pub todayCases: i32,
+    pub deaths: i32,
 }
 
 pub async fn query_cases(

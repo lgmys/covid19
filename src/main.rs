@@ -27,18 +27,16 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     match cases_query_result {
         Ok(resp) => {
             if matches.is_present("simple") {
-                println!("{}({})", resp.cases, resp.todayCases);
-                return Ok(())
+                println!("{}", resp.cases);
+                return Ok(());
             }
-        
             println!(
-                "covid-19 cases in {}: {} ({} today)",
-                resp.country, resp.cases, resp.todayCases
+                "covid-19 cases in {}: {} ({} today, {} deaths)",
+                resp.country, resp.cases, resp.todayCases, resp.deaths
             );
-        },
+        }
         Err(error) => panic!("could not fetch case count: {:?}", error),
     }
-
 
     Ok(())
 }
